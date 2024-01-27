@@ -34,6 +34,9 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
+/*
+    * Elimina los elementos de la matriz que son falsos.
+*/
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }

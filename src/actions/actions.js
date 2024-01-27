@@ -3,7 +3,7 @@ import { Client } from 'pg'
 import { cookies } from 'next/headers';
 
 
-export const ProcessDatabaseQuery = () => {
+export const ProcessDatabaseQuery = async () => {
     const cookieStore = cookies();
     const userName = cookieStore.get('userName')?.value ?? 'postgres';
     const password = cookieStore.get('password')?.value ?? '8066';
@@ -20,9 +20,11 @@ export const ProcessDatabaseQuery = () => {
         const query = `
         SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public';
         `;
-        const queryResponse = db_user.query(query);
+        const queryResponse = await db_user.query(query);
         return queryResponse.rows;
     } catch (error) {
         console.log(error);
     }
-}
+};
+
+

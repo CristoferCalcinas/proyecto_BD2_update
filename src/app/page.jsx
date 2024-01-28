@@ -1,5 +1,6 @@
 "use client";
 import { ProcessDatabaseQuery } from "@/actions/actions";
+import { RenderTablesDatabase, TextareaForQueries } from "@/components";
 
 export default function Home() {
   const enviarQuery = async () => {
@@ -13,6 +14,9 @@ export default function Home() {
   return (
     <div className="flex items-center justify-center">
       <div>
+        <TextareaForQueries />
+      </div>
+      <div>
         <button
           type="button"
           className="rounded-md bg-indigo-500 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
@@ -20,6 +24,9 @@ export default function Home() {
         >
           Button
         </button>
+      </div>
+      <div>
+        <RenderTablesDatabase />
       </div>
     </div>
   );

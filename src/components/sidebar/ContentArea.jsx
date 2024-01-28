@@ -1,5 +1,6 @@
 import { Bars3Icon, CircleStackIcon } from "@heroicons/react/24/outline";
 import { CurrentDatabase } from "../mainContent/CurrentDatabase";
+import { UserSwitcher } from "../userSwitcher/UserSwitcher";
 
 export const ContentArea = async ({ children }) => {
   return (
@@ -17,7 +18,7 @@ export const ContentArea = async ({ children }) => {
         {/* Separator */}
         <div className="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true" />
 
-        <div className="flex flex-1 items-center gap-x-4 self-stretch lg:gap-x-6">
+        <div className="flex items-center justify-between gap-x-4 lg:gap-x-10">
           <div className="flex items-center gap-x-4 lg:gap-x-6 ">
             <button
               type="button"
@@ -34,6 +35,15 @@ export const ContentArea = async ({ children }) => {
           </div>
 
           <CurrentDatabase />
+
+          <div>
+            <div>
+              <h2>user</h2>
+            </div>
+          </div>
+          <div>
+            <UserSwitcher />
+          </div>
         </div>
       </div>
 

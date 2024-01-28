@@ -52,7 +52,7 @@ export const WatchDatabaseTables = async () => {
         console.log(error);
     }
     // revalidatePath('/');
-}
+};
 
 // Ejecuta una query de tipo SELECT para retornar la informacion de una tabla
 export const WatchTableData = async (tableName) => {
@@ -79,4 +79,32 @@ export const WatchTableData = async (tableName) => {
         console.log(error);
     }
     // revalidatePath('/');
-} 
+};
+
+// Ejecuta una query para saber el nombre de la base de datos actual
+export const WatchDatabaseName = async () => {
+    const cookieStore = cookies();
+    const userName = cookieStore.get('userName')?.value ?? 'postgres';
+    const password = cookieStore.get('password')?.value ?? '8066';
+
+    const db_user = new Client({
+        user: userName,
+        host: 'localhost',
+        database: 'restaurante', // restaurante
+        password: password,
+        port: 4321,
+    });
+    try {
+        db_user.connect();
+        const query = `
+        SELECT current_database();
+        `;
+        const queryResponse = await db_user.query(query);
+        db_user.end();
+
+        return queryResponse.rows[0].current_database;
+    } catch (error) {
+        console.log(error);
+    }
+    // revalidatePath('/');
+};

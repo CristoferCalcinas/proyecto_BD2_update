@@ -8,18 +8,18 @@ export const SideBar = ({ children }) => {
     <div>
       {/*
           Menu para pantallas de celulares 
-         */}
+      */}
       <MobileMenu setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
 
       {/*
           Menu para pantallas de escritorio
-        */}
+      */}
       <DesktopMenu />
 
       {/* 
           Contenido de la página
         */}
-
+        
       <ContentArea children={children} />
     </div>
   );

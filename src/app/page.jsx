@@ -3,7 +3,11 @@ import { ProcessDatabaseQuery } from "@/actions/actions";
 
 export default function Home() {
   const enviarQuery = async () => {
-    const resp = await ProcessDatabaseQuery();
+    const queryTest = `
+    SELECT * FROM public.administrador
+    ORDER BY id_administrador ASC
+    `;
+    const resp = await ProcessDatabaseQuery(queryTest);
     console.log(resp);
   };
   return (

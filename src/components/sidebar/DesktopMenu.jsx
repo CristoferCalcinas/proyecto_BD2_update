@@ -1,16 +1,5 @@
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  Cog6ToothIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-} from "@heroicons/react/24/outline";
-
-
-
-
+import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { DatabaseTablesListener } from "./components/DatabaseTablesListener";
 
 export const DesktopMenu = () => {
   return (
@@ -27,7 +16,9 @@ export const DesktopMenu = () => {
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
-                <div></div>
+                <div>
+                  <DatabaseTablesListener />
+                </div>
               </li>
 
               <li className="mt-auto flex justify-center">

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { CreateTableAndRefresh, ProcessDatabaseQuery } from "@/actions/actions";
 
 export const TextareaForQueries = () => {
@@ -19,12 +20,15 @@ export const TextareaForQueries = () => {
       const consultasValidas = consultas.filter((query) => query.length > 0);
 
       console.log(consultasValidas);
-      let count = 1;
       for (const consulta of consultasValidas) {
-       
-        const resp = await ProcessDatabaseQuery(consulta);
-        // console.log(resp, count);
-        count += 1;
+        if (
+          consulta.toLowerCase().includes("create table") ||
+          consulta.toLowerCase().includes("drop table")
+        ) {
+          const resp = await CreateTableAndRefresh(consulta);
+        } else {
+          const resp = await ProcessDatabaseQuery(consulta);
+        }
       }
     } catch (error) {
       console.log(error);

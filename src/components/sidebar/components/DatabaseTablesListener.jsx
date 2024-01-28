@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowPathIcon,
+  EllipsisVerticalIcon,
+} from "@heroicons/react/24/outline";
 import { WatchDatabaseTables, WatchTableData } from "@/actions/actions";
 
 export const DatabaseTablesListener = () => {
@@ -13,8 +16,25 @@ export const DatabaseTablesListener = () => {
     ListDatabaseTables();
   }, []);
 
+  // refresh tables
+  const handleRefreshTables = async () => {
+    const resp = await WatchDatabaseTables();
+    setTablesList(resp);
+  };
+
   return (
     <div>
+      <div
+        className="flex justify-center py-5 cursor-pointer"
+        onClick={() => handleRefreshTables()}
+      >
+        <span>
+          <ArrowPathIcon
+            className="h-6 w-6 shrink-0 text-white"
+            aria-hidden="true"
+          />
+        </span>
+      </div>
       <ul>
         {tablesList.map(({ tablename }, index) => (
           <li key={index} className="border border-b-sky-200">

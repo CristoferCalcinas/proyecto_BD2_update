@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { WatchDatabaseTables } from "@/actions/actions";
 
 export const DatabaseTablesListener = () => {
@@ -14,9 +15,9 @@ export const DatabaseTablesListener = () => {
 
   return (
     <div>
-      <ul className="flex flex-col items-center">
+      <ul>
         {tablesList.map(({ tablename }, index) => (
-          <li key={index}>
+          <li key={index} className="border border-b-sky-200">
             <TablesListenerList tablename={tablename} />
           </li>
         ))}
@@ -27,7 +28,7 @@ export const DatabaseTablesListener = () => {
 
 const TablesListenerList = ({ tablename }) => {
   return (
-    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div className="min-w-full py-2 align-middle pl-7 pr-4 flex items-center justify-around">
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>
@@ -40,6 +41,9 @@ const TablesListenerList = ({ tablename }) => {
           </tr>
         </thead>
       </table>
+      <div>
+        <EllipsisVerticalIcon className="h-6 w-6 text-white" />
+      </div>
     </div>
   );
 };

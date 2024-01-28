@@ -4,7 +4,3 @@ export { ContentArea } from './sidebar/ContentArea'
 
 
 export { SideBar } from './sidebar/SideBar'
-
-
-export { TextareaForQueries } from './mainContent/TextareaForQueries'
-export { RenderTablesDatabase } from './mainContent/RenderTablesDatabase'

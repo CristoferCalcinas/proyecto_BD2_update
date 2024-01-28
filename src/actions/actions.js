@@ -6,8 +6,8 @@ import { cookies } from 'next/headers';
 // Se envia una query desde el textarea, esta funcion la procesa y se retorna el resultado
 export const ProcessDatabaseQuery = async (query) => {
     const cookieStore = cookies();
-    const userName = cookieStore.get('userName')?.value ?? 'postgres';
-    const password = cookieStore.get('password')?.value ?? '8066';
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
 
     const db_user = new Client({
         user: userName,
@@ -30,8 +30,8 @@ export const ProcessDatabaseQuery = async (query) => {
 // Ejecuta una query para retornar las tablas dentro de la base de datos
 export const WatchDatabaseTables = async () => {
     const cookieStore = cookies();
-    const userName = cookieStore.get('userName')?.value ?? 'postgres';
-    const password = cookieStore.get('password')?.value ?? '8066';
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
 
     const db_user = new Client({
         user: userName,
@@ -57,8 +57,8 @@ export const WatchDatabaseTables = async () => {
 // Ejecuta una query de tipo SELECT para retornar la informacion de una tabla
 export const WatchTableData = async (tableName) => {
     const cookieStore = cookies();
-    const userName = cookieStore.get('userName')?.value ?? 'postgres';
-    const password = cookieStore.get('password')?.value ?? '8066';
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
 
     const db_user = new Client({
         user: userName,
@@ -84,8 +84,8 @@ export const WatchTableData = async (tableName) => {
 // Ejecuta una query para saber el nombre de la base de datos actual
 export const WatchDatabaseName = async () => {
     const cookieStore = cookies();
-    const userName = cookieStore.get('userName')?.value ?? 'postgres';
-    const password = cookieStore.get('password')?.value ?? '8066';
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
 
     const db_user = new Client({
         user: userName,
@@ -112,8 +112,8 @@ export const WatchDatabaseName = async () => {
 // Ejecuta una query de tipo CREATE TABLE para crear una nueva tabla
 export const CreateTableAndRefresh = async (query) => {
     const cookieStore = cookies();
-    const userName = cookieStore.get('userName')?.value ?? 'postgres';
-    const password = cookieStore.get('password')?.value ?? '8066';
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
 
     const db_user = new Client({
         user: userName,

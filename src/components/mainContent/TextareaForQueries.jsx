@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { CreateTableAndRefresh, ProcessDatabaseQuery } from "@/actions/actions";
+import { setCookie } from "cookies-next";
+
+setCookie("userDatabase", "postgres");
+setCookie("passwordDatabase", "8066");
 
 export const TextareaForQueries = () => {
   const [textAreaContent, setTextAreaContent] = useState("");

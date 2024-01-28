@@ -74,6 +74,7 @@ export const WatchTableData = async (tableName) => {
         `;
         const queryResponse = await db_user.query(query);
         db_user.end();
+        cookieStore.set('response_last_query', JSON.stringify(queryResponse.rows));
         return queryResponse.rows;
     } catch (error) {
         console.log(error);

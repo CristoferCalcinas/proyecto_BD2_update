@@ -7,7 +7,7 @@ export const UserDisplayName = () => {
   const actualUser = getCookie("userDatabase");
   return (
     <div>
-      <h2>{hasUserCookie && actualUser}</h2>
+      <h2>{hasUserCookie ? actualUser : "postgres"}</h2>
     </div>
   );
 };

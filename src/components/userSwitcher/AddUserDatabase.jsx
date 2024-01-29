@@ -1,15 +1,13 @@
 "use client";
 
+import { CreateNewUserDatabase } from "@/actions/actions";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 
 export default function AddUserDatabase() {
   const [inputUser, setInputUser] = useState("");
   const [inputPassword, setInputPassword] = useState("");
-  const { userDatabase, passwordDatabase } = useSelector(
-    (state) => state.textArea
-  );
+
   const handleUserChange = (e) => {
     setInputUser(e.target.value);
   };
@@ -20,22 +18,18 @@ export default function AddUserDatabase() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (inputUser === "") return;
-    if (inputPassword === "") return;
-    const consulta = `CREATE USER ${inputUser} WITH PASSWORD '${inputPassword}';`;
-    const resp = await fetch("http://localhost:3000/api/conectBack", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ consulta, userDatabase, passwordDatabase }),
-    });
-    // const data = await resp.json();
-    // console.log(data)
-    toast.success(`Usuario | ${inputUser} | se a creado con éxito`);
+    if (inputUser.trim().length === 0 || inputPassword.trim().length === 0) {
+      return;
+    }
+    const respNewUser = await CreateNewUserDatabase(`
+      CREATE USER ${inputUser} WITH PASSWORD '${inputPassword}';
+    `);
+    // toast.success(`Usuario | ${inputUser} | se a creado con éxito`);
+    console.log(respNewUser);
     setInputUser("");
     setInputPassword("");
   };
+
   return (
     <form action="#" className="mt-6 flex justify-between" onSubmit={onSubmit}>
       <div className="space-y-2">

@@ -133,3 +133,27 @@ export const CreateTableAndRefresh = async (query) => {
         console.log(error);
     }
 };
+
+// Ejecuta una query de tipo CREATE USER **** WITH PASSWORD para la creacion de un nuevo usuario
+export const CreateNewUserDatabase = async (query) => {
+    const cookieStore = cookies();
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
+
+    const db_user = new Client({
+        user: userName,
+        host: 'localhost',
+        database: 'restaurante', // restaurante
+        password: password,
+        port: 4321,
+    });
+    try {
+        db_user.connect();
+        const queryResponse = await db_user.query(query);
+        db_user.end();
+        console.log(queryResponse)
+        return JSON.stringify(queryResponse);
+    } catch (error) {
+        console.log(error);
+    }
+};

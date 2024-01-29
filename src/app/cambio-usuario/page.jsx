@@ -1,3 +1,4 @@
+import AddUserDatabase from "@/components/userSwitcher/AddUserDatabase";
 import Link from "next/link";
 
 export default function CambioUsuarioPage() {
@@ -31,7 +32,7 @@ export default function CambioUsuarioPage() {
             </span>
           </p>
         </div>
-        {/* <AddUserDatabase /> */}
+        <AddUserDatabase />
       </div>
       <div className="mt-10">
         <h3 className="text-sm font-medium text-gray-500">

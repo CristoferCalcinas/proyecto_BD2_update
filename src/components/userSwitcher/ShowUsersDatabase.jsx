@@ -115,6 +115,7 @@ function ModalChangeUser({ openP: { open, user }, setOpen }) {
     setCookie("userDatabase", changeUser);
     setCookie("passwordDatabase", changePassword);
     router.push("/");
+    router.refresh();
   };
 
   return (

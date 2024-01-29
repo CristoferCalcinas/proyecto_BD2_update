@@ -1,6 +1,7 @@
 import { Bars3Icon, CircleStackIcon } from "@heroicons/react/24/outline";
 import { CurrentDatabase } from "../mainContent/CurrentDatabase";
 import { UserSwitcher } from "../userSwitcher/UserSwitcher";
+import { UserDisplayName } from "../userSwitcher/UserDisplayName";
 
 export const ContentArea = async ({ children }) => {
   return (
@@ -37,9 +38,7 @@ export const ContentArea = async ({ children }) => {
           <CurrentDatabase />
 
           <div>
-            <div>
-              <h2>user</h2>
-            </div>
+            <UserDisplayName />
           </div>
           <div>
             <UserSwitcher />

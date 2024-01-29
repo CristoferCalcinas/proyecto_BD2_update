@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   UserIcon,
   LockOpenIcon,
   ArrowPathIcon,
 } from "@heroicons/react/20/solid";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { WatchDatabaseUsers } from "@/actions/actions";
+import { setCookie } from "cookies-next";
 
 export default function ShowUsersDatabase() {
   const [users, setUsers] = useState([]); // Estado para almacenar los usuarios
@@ -13,25 +18,14 @@ export default function ShowUsersDatabase() {
     open: false,
     user: "",
   });
-  const { userDatabase, passwordDatabase } = useSelector(
-    (state) => state.textArea
-  );
 
   useEffect(() => {
-    const consulta = `SELECT * FROM pg_catalog.pg_user;`;
-    const getPeople = async () => {
-      const resp = await fetch("http://localhost:3000/api/conectBack", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ consulta, userDatabase, passwordDatabase }),
-      });
-      const data = await resp.json();
-      setUsers(data); // Actualiza el estado con los datos de la respuesta
+    const retrieveAllUsers = async () => {
+      const respAllUsers = await WatchDatabaseUsers();
+      setUsers(respAllUsers); // Actualiza el estado con los datos de la respuesta
     };
 
-    getPeople(); // Llama a la función al montar el componente
+    retrieveAllUsers(); // Llama a la función al montar el componente
   }, []); // [] significa que se ejecutará solo una vez al montar el componente
 
   const changeLoginUser = (nameUser) => {
@@ -42,17 +36,9 @@ export default function ShowUsersDatabase() {
   };
 
   const reloadUsers = () => {
-    const consulta = `SELECT * FROM pg_catalog.pg_user;`;
     const getPeople = async () => {
-      const resp = await fetch("http://localhost:3000/api/conectBack", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ consulta, userDatabase, passwordDatabase }),
-      });
-      const data = await resp.json();
-      setUsers(data); // Actualiza el estado con los datos de la respuesta
+      const respAllUsers = await WatchDatabaseUsers();
+      setUsers(respAllUsers); // Actualiza el estado con los datos de la respuesta
     };
 
     getPeople(); // Llama a la función al montar el componente
@@ -115,27 +101,19 @@ export default function ShowUsersDatabase() {
   );
 }
 
-import { Fragment, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useDispatch, useSelector } from "react-redux";
-import { changeUserDatabase } from "@/store/textAreaSlicel";
-import { useRouter } from "next/navigation";
-
 function ModalChangeUser({ openP: { open, user }, setOpen }) {
   const [textInput, setTextInput] = useState("");
   const cancelButtonRef = useRef(null);
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const onInputChange = (event) => {
     setTextInput(event.target.value);
   };
 
-  const changeUserContext = (changeUser, changePassword) => {
+  const changeUserForQueries = (changeUser, changePassword) => {
     setOpen({ open: false, user: "" });
-    dispatch(changeUserDatabase({ changeUser, changePassword }));
-    // usando el metodo navigate quiero moverme a la pagina principal
+    setCookie("userDatabase", changeUser);
+    setCookie("passwordDatabase", changePassword);
     router.push("/");
   };
 
@@ -207,9 +185,8 @@ function ModalChangeUser({ openP: { open, user }, setOpen }) {
                 </div>
                 <div className="mt-5 flex justify-center">
                   <button
-                    // type="button"
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:w-auto"
-                    onClick={() => changeUserContext(user, textInput)}
+                    onClick={() => changeUserForQueries(user, textInput)}
                     ref={cancelButtonRef}
                   >
                     Cambiar

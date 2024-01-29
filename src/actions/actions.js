@@ -23,7 +23,9 @@ export const ProcessDatabaseQuery = async (query) => {
         cookieStore.set('response_last_query', JSON.stringify(queryResponse.rows));
         return queryResponse.rows;
     } catch (error) {
+        console.log('ProcessDatabaseQuery')
         console.log(error);
+        console.log('ProcessDatabaseQuery')
     }
     // revalidatePath('/');
 };
@@ -50,7 +52,9 @@ export const WatchDatabaseTables = async () => {
         db_user.end();
         return queryResponse.rows;
     } catch (error) {
+        console.log('WatchDatabaseTables')
         console.log(error);
+        console.log('WatchDatabaseTables')
     }
     // revalidatePath('/');
 };
@@ -78,7 +82,16 @@ export const WatchTableData = async (tableName) => {
         cookieStore.set('response_last_query', JSON.stringify(queryResponse.rows));
         return queryResponse.rows;
     } catch (error) {
+        cookies().set('permissionErrorMessage', JSON.stringify(error.message));
+        cookies().set('response_last_query', '[]');
+        console.log('WatchTableData')
         console.log(error);
+        console.log('WatchTableData')
+        return [
+            {
+                error: error.message
+            }
+        ];
     }
     // revalidatePath('/');
 };
@@ -106,7 +119,9 @@ export const WatchDatabaseName = async () => {
 
         return queryResponse.rows[0].current_database;
     } catch (error) {
+        console.log('WatchDatabaseName')
         console.log(error);
+        console.log('WatchDatabaseName')
     }
     // revalidatePath('/');
 };
@@ -130,7 +145,9 @@ export const CreateTableAndRefresh = async (query) => {
         db_user.end();
         return queryResponse.rows;
     } catch (error) {
+        console.log('CreateTableAndRefresh')
         console.log(error);
+        console.log('CreateTableAndRefresh')
     }
 };
 
@@ -154,6 +171,37 @@ export const CreateNewUserDatabase = async (query) => {
         console.log(queryResponse)
         return JSON.stringify(queryResponse);
     } catch (error) {
+        console.log('CreateNewUserDatabase')
         console.log(error);
+        console.log('CreateNewUserDatabase')
+    }
+};
+
+// Ejecuta una query que retorna todos los usarios de la base de datos
+export const WatchDatabaseUsers = async () => {
+    const cookieStore = cookies();
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
+
+    const db_user = new Client({
+        user: userName,
+        host: 'localhost',
+        database: 'restaurante', // restaurante
+        password: password,
+        port: 4321,
+    });
+    try {
+        db_user.connect();
+        const query = `
+        SELECT * FROM pg_catalog.pg_user;
+        `;
+        const queryResponse = await db_user.query(query);
+        db_user.end();
+        console.log(queryResponse)
+        return queryResponse.rows;
+    } catch (error) {
+        console.log('WatchDatabaseUsers');
+        console.log(error);
+        console.log('WatchDatabaseUsers');
     }
 };

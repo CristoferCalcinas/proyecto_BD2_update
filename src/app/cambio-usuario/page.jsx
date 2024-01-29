@@ -1,4 +1,5 @@
 import AddUserDatabase from "@/components/userSwitcher/AddUserDatabase";
+import ShowUsersDatabase from "@/components/userSwitcher/ShowUsersDatabase";
 import Link from "next/link";
 
 export default function CambioUsuarioPage() {
@@ -38,7 +39,7 @@ export default function CambioUsuarioPage() {
         <h3 className="text-sm font-medium text-gray-500">
           Usuarios existentes en la base de datos
         </h3>
-        {/* <ShowUsersDatabase /> */}
+        <ShowUsersDatabase />
       </div>
 
       <div className="flex justify-center my-5">

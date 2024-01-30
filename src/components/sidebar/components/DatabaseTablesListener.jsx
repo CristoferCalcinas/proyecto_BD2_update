@@ -4,6 +4,7 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { WatchDatabaseTables, WatchTableData } from "@/actions/actions";
 import { ExtendedFunctionalityModule } from "@/components/extraFunctions/ExtendedFunctionalityModule";
 import InsertDataFunction from "@/components/extraFunctions/insertData/InsertDataFunction";
+import { DeletedTablaFunction } from "@/components/extraFunctions/deletedTables/DeletedTablaFunction";
 
 export const DatabaseTablesListener = () => {
   const [tablesList, setTablesList] = useState([]);
@@ -15,7 +16,9 @@ export const DatabaseTablesListener = () => {
     ListDatabaseTables();
   }, []);
 
+  // Hooks para controlar el modal respectivo a cada funcion
   const [InsertData, setInsertData] = useState(false);
+  const [DeletedTable, setDeletedTable] = useState(false);
 
   // refresh tables
   const handleRefreshTables = async () => {
@@ -43,6 +46,7 @@ export const DatabaseTablesListener = () => {
               tablename={tablename}
               openParam={InsertData}
               setOpenParam={setInsertData}
+              setOpenParamDelete={setDeletedTable}
             />
           </li>
         ))}
@@ -54,12 +58,22 @@ export const DatabaseTablesListener = () => {
           setOpenParam={setInsertData}
         />
       </div>
+      <div>
+        <DeletedTablaFunction
+          openParam={DeletedTable}
+          setOpenParam={setDeletedTable}
+        />
+      </div>
     </div>
   );
 };
 
 //
-const TablesListenerList = ({ tablename, openParam, setOpenParam }) => {
+const TablesListenerList = ({
+  tablename,
+  setOpenParam,
+  setOpenParamDelete,
+}) => {
   const handleDescribeTable = async (tablename) => {
     // Cada click en una tabla, se hace un SELECT de la tabla
     const respSELECT = await WatchTableData(tablename);
@@ -88,6 +102,7 @@ const TablesListenerList = ({ tablename, openParam, setOpenParam }) => {
         <ExtendedFunctionalityModule
           tableName={tablename}
           setOpenParam={setOpenParam}
+          setOpenParamDelete={setOpenParamDelete}
         />
       </div>
     </div>

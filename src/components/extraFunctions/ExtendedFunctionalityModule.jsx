@@ -9,8 +9,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export const ExtendedFunctionalityModule = ({ tableName, setOpenParam }) => {
-  const handleDeleteTable = () => {};
+export const ExtendedFunctionalityModule = ({
+  tableName,
+  setOpenParam,
+  setOpenParamDelete,
+}) => {
+  const handleDeleteTable = () => {
+    console.log("nombre de la tabla actual", { tableName });
+    setCookie("deleteTableByFunction", tableName);
+    setOpenParamDelete(true);
+  };
   const handleInsertData = (tableName) => {
     console.log("nombre de la tabla actual", { tableName });
     setCookie("insertDataByFunction", tableName);

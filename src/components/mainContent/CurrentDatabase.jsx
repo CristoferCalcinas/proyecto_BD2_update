@@ -1,10 +1,11 @@
 "use client";
 
 import { WatchDatabaseName } from "@/actions/actions";
+import { TableCellsIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 
 export const CurrentDatabase = () => {
-  const [nameDatabase, setNameDatabase] = useState('No database selected');
+  const [nameDatabase, setNameDatabase] = useState("No database selected");
   useEffect(() => {
     const getNameDatabase = async () => {
       const name = await WatchDatabaseName();
@@ -14,7 +15,8 @@ export const CurrentDatabase = () => {
   }, []);
 
   return (
-    <div className="text-gray-700">
+    <div className="flex items-center justify-center space-x-1">
+      <TableCellsIcon className="h-6 w-6" />
       <h1>{nameDatabase}</h1>
     </div>
   );

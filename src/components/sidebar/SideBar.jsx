@@ -22,7 +22,7 @@ export const SideBar = ({ children }) => {
           Contenido de la página
         */}
       <div className="col-span-12 lg:col-span-8">
-        <ContentArea children={children} />
+        <ContentArea children={children} setSidebarOpen={setSidebarOpen} />
       </div>
     </div>
   );

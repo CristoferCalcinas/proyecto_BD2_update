@@ -212,10 +212,6 @@ export const InspectTableColumns = async (tableName) => {
     const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
     const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
 
-    console.log('---------------------------------')
-    console.log(tableName)
-    console.log('---------------------------------')
-
     const db_user = new Client({
         user: userName,
         host: 'localhost',

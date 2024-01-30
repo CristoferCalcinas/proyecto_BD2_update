@@ -205,3 +205,38 @@ export const WatchDatabaseUsers = async () => {
         console.log('WatchDatabaseUsers');
     }
 };
+
+// Ejecuta una query para detallar el nombre y el tipo de dato de las columnas de una tabla
+export const InspectTableColumns = async (tableName) => {
+    const cookieStore = cookies();
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
+
+    console.log('---------------------------------')
+    console.log(tableName)
+    console.log('---------------------------------')
+
+    const db_user = new Client({
+        user: userName,
+        host: 'localhost',
+        database: 'restaurante', // restaurante
+        password: password,
+        port: 4321,
+    });
+    try {
+        db_user.connect();
+        const query = `
+        SELECT column_name, data_type
+        FROM information_schema.columns
+        WHERE table_name = '${tableName}';
+        `;
+        const queryResponse = await db_user.query(query);
+        db_user.end();
+        console.log(queryResponse)
+        return queryResponse.rows;
+    } catch (error) {
+        console.log('InspectTableColumns');
+        console.log(error);
+        console.log('InspectTableColumns');
+    }
+};

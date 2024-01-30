@@ -1,10 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  ArrowPathIcon,
-  EllipsisVerticalIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { WatchDatabaseTables, WatchTableData } from "@/actions/actions";
+import { ExtendedFunctionalityModule } from "@/components/extraFunctions/ExtendedFunctionalityModule";
+import InsertDataFunction from "@/components/extraFunctions/insertData/InsertDataFunction";
 
 export const DatabaseTablesListener = () => {
   const [tablesList, setTablesList] = useState([]);
@@ -15,6 +14,8 @@ export const DatabaseTablesListener = () => {
     };
     ListDatabaseTables();
   }, []);
+
+  const [InsertData, setInsertData] = useState(false);
 
   // refresh tables
   const handleRefreshTables = async () => {
@@ -38,19 +39,31 @@ export const DatabaseTablesListener = () => {
       <ul>
         {tablesList.map(({ tablename }, index) => (
           <li key={index} className="border border-b-sky-200">
-            <TablesListenerList tablename={tablename} />
+            <TablesListenerList
+              tablename={tablename}
+              openParam={InsertData}
+              setOpenParam={setInsertData}
+            />
           </li>
         ))}
       </ul>
+
+      <div>
+        <InsertDataFunction
+          openParam={InsertData}
+          setOpenParam={setInsertData}
+        />
+      </div>
     </div>
   );
 };
 
-const TablesListenerList = ({ tablename }) => {
+//
+const TablesListenerList = ({ tablename, openParam, setOpenParam }) => {
   const handleDescribeTable = async (tablename) => {
-    console.log(tablename);
+    // Cada click en una tabla, se hace un SELECT de la tabla
     const respSELECT = await WatchTableData(tablename);
-    console.log(respSELECT);
+    // Tambien podemos manejar las cookies desde aca, en lugar de hacerlo en el server action
   };
   return (
     <div className="min-w-full py-2 align-middle pl-7 pr-4 flex items-center justify-between">
@@ -72,7 +85,10 @@ const TablesListenerList = ({ tablename }) => {
         </table>
       </div>
       <div className="bg-red-500 h-full">
-        <EllipsisVerticalIcon className="h-10 w-6 text-white" />
+        <ExtendedFunctionalityModule
+          tableName={tablename}
+          setOpenParam={setOpenParam}
+        />
       </div>
     </div>
   );

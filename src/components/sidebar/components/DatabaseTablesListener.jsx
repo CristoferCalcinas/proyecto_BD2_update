@@ -80,7 +80,7 @@ const TablesListenerList = ({
     // Tambien podemos manejar las cookies desde aca, en lugar de hacerlo en el server action
   };
   return (
-    <div className="min-w-full py-2 align-middle pl-7 pr-4 flex items-center justify-between">
+    <div className="min-w-full py-2 align-middle pl-7 pr-2 flex items-center justify-between">
       <div
         onClick={() => handleDescribeTable(tablename)}
         className="cursor-pointer"
@@ -98,7 +98,7 @@ const TablesListenerList = ({
           </thead>
         </table>
       </div>
-      <div className="bg-red-500 h-full">
+      <div className="h-full">
         <ExtendedFunctionalityModule
           tableName={tablename}
           setOpenParam={setOpenParam}

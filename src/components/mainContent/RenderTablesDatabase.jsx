@@ -7,7 +7,15 @@ export const RenderTablesDatabase = () => {
   );
 
   if (!queryResult || queryResult.length === 0) {
-    return <div>No hay datos para mostrar.</div>;
+    return (
+      <div className="flex justify-center my-20">
+        <span>
+          <h3 className="text-2xl italic font-bold">
+            No hay datos para mostrar.
+          </h3>
+        </span>
+      </div>
+    );
   }
 
   return (

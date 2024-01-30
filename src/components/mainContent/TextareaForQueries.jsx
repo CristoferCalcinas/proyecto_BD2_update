@@ -58,10 +58,11 @@ export const TextareaForQueries = () => {
 
   return (
     <div>
-      <div className="flex justify-between">
-        <span className="block text-xl font-medium leading-6 text-gray-900">
-          Ingresa tu Consulta SQL
+      <div className="flex justify-evenly items-center">
+        <span className="block text-xl font-extrabold leading-6 text-gray-900 tracking-tight">
+          Escribe SQL
         </span>
+
         <button
           className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={() => {
@@ -70,6 +71,7 @@ export const TextareaForQueries = () => {
         >
           Limpiar
         </button>
+
         <button
           className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={onSubmitDatabase}

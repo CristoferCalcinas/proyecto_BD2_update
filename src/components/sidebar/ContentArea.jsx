@@ -24,7 +24,7 @@ export const ContentArea = async ({ children }) => {
               <CircleStackIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="lg:flex lg:justify-evenly lg:w-full">
+          <div className="md:flex md:justify-evenly md:w-full">
             <CurrentDatabase />
             <UserDisplayName />
           </div>

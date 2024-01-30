@@ -236,3 +236,31 @@ export const InspectTableColumns = async (tableName) => {
         console.log('InspectTableColumns');
     }
 };
+
+// Ejecuta una query para eliminar una tabla en base al nombre pasada por parametro
+export const DeleteTableByName = async (tableName) => {
+    const cookieStore = cookies();
+    const userName = cookieStore.get('userDatabase')?.value ?? 'postgres';
+    const password = cookieStore.get('passwordDatabase')?.value ?? '8066';
+    const db_user = new Client({
+        user: userName,
+        host: 'localhost',
+        database: 'restaurante',
+        password: password,
+        port: 4321,
+    });
+    try {
+        db_user.connect();
+        const query = `
+        DROP TABLE IF EXISTS ${tableName};
+        `;
+        const queryResponse = await db_user.query(query);
+        db_user.end();
+        cookieStore.set('response_last_query', JSON.stringify(queryResponse.rows));
+        return queryResponse.rows;
+    } catch (error) {
+        console.log('DeleteTableByName');
+        console.log(error);
+        console.log('DeleteTableByName');
+    }
+};

@@ -1,12 +1,14 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
+import { TrashIcon } from "@heroicons/react/24/outline";
 import { getCookie } from "cookies-next";
 import { RemoveDynamicModalRenderer } from "./RemoveDynamicModalRenderer";
+import { DeleteTableByName } from "@/actions/actions";
 
 export const DeletedTablaFunction = ({ openParam, setOpenParam }) => {
   const handleTableName = getCookie("deleteTableByFunction");
+  const userDatabase = getCookie("userDatabase");
   const [renderModalDeletedTable, setRenderModalDeletedTable] = useState();
   useEffect(() => {
     const reloadTableName = getCookie("deleteTableByFunction");
@@ -16,6 +18,8 @@ export const DeletedTablaFunction = ({ openParam, setOpenParam }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("eliminando tabla", { handleTableName });
+    const resp = await DeleteTableByName(handleTableName);
+    setOpenParam(false);
   };
   return (
     <Transition.Root show={openParam} as={Fragment}>
@@ -46,9 +50,9 @@ export const DeletedTablaFunction = ({ openParam, setOpenParam }) => {
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-7 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8">
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                      <AdjustmentsHorizontalIcon
-                        className="h-6 w-6 text-blue-600"
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                      <TrashIcon
+                        className="h-6 w-6 text-red-600"
                         aria-hidden="true"
                       />
                     </div>
@@ -66,12 +70,13 @@ export const DeletedTablaFunction = ({ openParam, setOpenParam }) => {
                         {renderModalDeletedTable && (
                           <RemoveDynamicModalRenderer
                             renderModalDeletedTable={renderModalDeletedTable}
+                            user={userDatabase}
                           />
                         )}
                       </div>
                     </div>
                   </div>
-                  <div className="mt-5 sm:mt-6">
+                  <div className="mt-3">
                     <button
                       type="submit"
                       className="inline-flex w-full justify-center rounded-md bg-pink-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"

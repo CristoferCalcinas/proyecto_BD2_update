@@ -5,7 +5,7 @@ import { ContentArea, DesktopMenu, MobileMenu } from "..";
 export const SideBar = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <div>
+    <div className="grid grid-cols-12">
       {/*
           Menu para pantallas de celulares 
       */}
@@ -14,13 +14,16 @@ export const SideBar = ({ children }) => {
       {/*
           Menu para pantallas de escritorio
       */}
-      <DesktopMenu />
+      <div className="col-span-4">
+        <DesktopMenu />
+      </div>
 
       {/* 
           Contenido de la página
         */}
-        
-      <ContentArea children={children} />
+      <div className="col-span-8">
+        <ContentArea children={children} />
+      </div>
     </div>
   );
 };

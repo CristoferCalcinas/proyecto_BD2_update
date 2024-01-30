@@ -16,16 +16,7 @@ export const ExtendedFunctionalityModule = ({ tableName, setOpenParam }) => {
     setCookie("insertDataByFunction", tableName);
     setOpenParam(true);
   };
-  // const handleInsertData = async () => {
-  //   setOpenParam(true);
-  //   const consulta = `
-  //   SELECT column_name, data_type
-  //   FROM information_schema.columns
-  //   WHERE table_name = '${tableName}';
-  //   `;
 
-  //   setDataInputFunction({ dataTableName: tableName, dataInput: data });
-  // };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

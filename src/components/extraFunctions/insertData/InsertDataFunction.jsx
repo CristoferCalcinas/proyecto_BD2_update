@@ -7,11 +7,7 @@ import { InsertDataByTables } from "./InsertDataByTables";
 import { getCookie } from "cookies-next";
 // import { toast } from "sonner";
 
-export default function InsertDataFunction({
-  openParam,
-  setOpenParam,
-  // handleTableName,
-}) {
+export default function InsertDataFunction({ openParam, setOpenParam }) {
   const handleTableName = getCookie("insertDataByFunction");
   const [renderContentInput, setRenderContentInput] = useState();
   useEffect(() => {
@@ -26,7 +22,6 @@ export default function InsertDataFunction({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputValues);
 
     const keys = Object.keys(inputValues).join(",");
     const values = Object.values(inputValues)
@@ -44,7 +39,8 @@ export default function InsertDataFunction({
     const respInsertDataInDatabase = await ProcessDatabaseQuery(
       `INSERT INTO ${handleTableName} (${keys}) VALUES (${values});`
     );
-    // if (data.length === 0) {
+
+    // if (data.length) { // false porque el resultado es cero y cualquier resultado que no es cero es true en JS
     //   toast.success("Datos insertados correctamente");
     // } else {
     //   toast.error(data);

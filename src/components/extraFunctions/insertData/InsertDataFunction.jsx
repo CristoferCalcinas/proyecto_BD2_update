@@ -1,13 +1,13 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
+import { InsertDataByTables } from "./InsertDataByTables";
 import { Dialog, Transition } from "@headlessui/react";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { InspectTableColumns, ProcessDatabaseQuery } from "@/actions/actions";
-import { InsertDataByTables } from "./InsertDataByTables";
-import { getCookie } from "cookies-next";
 // import { toast } from "sonner";
 
-export default function InsertDataFunction({ openParam, setOpenParam }) {
+export function InsertDataFunction({ openParam, setOpenParam }) {
   const handleTableName = getCookie("insertDataByFunction");
   const [renderContentInput, setRenderContentInput] = useState();
   useEffect(() => {

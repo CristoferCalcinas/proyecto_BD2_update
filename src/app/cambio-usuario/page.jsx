@@ -1,6 +1,6 @@
+import Link from "next/link";
 import AddUserDatabase from "@/components/userSwitcher/AddUserDatabase";
 import ShowUsersDatabase from "@/components/userSwitcher/ShowUsersDatabase";
-import Link from "next/link";
 
 export default function CambioUsuarioPage() {
   return (

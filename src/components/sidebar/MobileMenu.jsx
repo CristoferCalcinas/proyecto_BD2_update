@@ -1,7 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
-import { DatabaseTablesListener } from "./components/DatabaseTablesListener";
 import { DatabaseTablesListenerMovile } from "./components/DatabaseTablesListenerMovile";
 
 export const MobileMenu = ({ sidebarOpen, setSidebarOpen }) => {

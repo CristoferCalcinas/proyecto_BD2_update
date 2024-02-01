@@ -3,6 +3,7 @@ import {
   XMarkIcon,
   NoSymbolIcon,
 } from "@heroicons/react/20/solid";
+
 export const RemoveDynamicModalRenderer = ({
   renderModalDeletedTable = "No table name",
   user = "",

@@ -1,5 +1,5 @@
-import { RenderTablesDatabase } from "@/components/mainContent/RenderTablesDatabase";
 import { TextareaForQueries } from "@/components/mainContent/TextareaForQueries";
+import { RenderTablesDatabase } from "@/components/mainContent/RenderTablesDatabase";
 
 export default function Home() {
   return (

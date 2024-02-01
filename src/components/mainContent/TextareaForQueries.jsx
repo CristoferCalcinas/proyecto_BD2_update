@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { CreateTableAndRefresh, ProcessDatabaseQuery } from "@/actions/actions";
 import { setCookie } from "cookies-next";
+import { CreateTableAndRefresh, ProcessDatabaseQuery } from "@/actions/actions";
 
 setCookie("userDatabase", "postgres");
 setCookie("passwordDatabase", "8066");

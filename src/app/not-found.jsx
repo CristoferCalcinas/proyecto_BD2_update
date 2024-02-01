@@ -1,5 +1,5 @@
-import { HomeIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { HomeIcon } from "@heroicons/react/20/solid";
 
 export default function NotFound() {
   return (

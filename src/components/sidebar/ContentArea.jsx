@@ -1,8 +1,8 @@
-import { CircleStackIcon } from "@heroicons/react/24/outline";
 import { CurrentDatabase } from "../mainContent/CurrentDatabase";
 import { UserSwitcher } from "../userSwitcher/UserSwitcher";
 import { UserDisplayName } from "../userSwitcher/UserDisplayName";
 import { MobileSidebarOpenerBtn } from "./components/MobileSidebarOpenerBtn";
+import { CircleStackIcon } from "@heroicons/react/24/outline";
 
 export const ContentArea = ({ children, setSidebarOpen }) => {
   return (

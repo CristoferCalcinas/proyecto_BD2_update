@@ -1,10 +1,10 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { TrashIcon } from "@heroicons/react/24/outline";
 import { getCookie } from "cookies-next";
-import { RemoveDynamicModalRenderer } from "./RemoveDynamicModalRenderer";
 import { DeleteTableByName } from "@/actions/actions";
+import { RemoveDynamicModalRenderer } from "./RemoveDynamicModalRenderer";
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { Dialog, Transition } from "@headlessui/react";
 
 export const DeletedTablaFunction = ({ openParam, setOpenParam }) => {
   const handleTableName = getCookie("deleteTableByFunction");

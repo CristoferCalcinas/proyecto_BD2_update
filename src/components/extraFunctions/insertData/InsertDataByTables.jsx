@@ -1,4 +1,5 @@
 "use client";
+
 export const InsertDataByTables = ({ data, inputValues, setInputValues }) => {
   const handleInputChange = (e, columnName) => {
     const newValue =
@@ -8,6 +9,7 @@ export const InsertDataByTables = ({ data, inputValues, setInputValues }) => {
       [columnName]: newValue,
     });
   };
+
   return (
     <div className="flex justify-end">
       <div className="mt-1 space-x-4">

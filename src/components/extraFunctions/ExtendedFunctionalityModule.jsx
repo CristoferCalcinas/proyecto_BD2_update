@@ -1,9 +1,9 @@
 "use client";
 
 import { Fragment } from "react";
+import { setCookie } from "cookies-next";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { setCookie } from "cookies-next";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { WatchDatabaseName } from "@/actions/actions";
 import { TableCellsIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
 
 export const CurrentDatabase = () => {
   const [nameDatabase, setNameDatabase] = useState("No database selected");

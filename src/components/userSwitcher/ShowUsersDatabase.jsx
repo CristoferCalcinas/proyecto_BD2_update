@@ -2,6 +2,8 @@
 
 import { useEffect, useState, Fragment, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { WatchDatabaseUsers } from "@/actions/actions";
+import { setCookie } from "cookies-next";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   UserIcon,
@@ -9,8 +11,6 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/20/solid";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { WatchDatabaseUsers } from "@/actions/actions";
-import { setCookie } from "cookies-next";
 
 export default function ShowUsersDatabase() {
   const [users, setUsers] = useState([]); // Estado para almacenar los usuarios

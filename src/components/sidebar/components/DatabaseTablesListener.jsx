@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { WatchDatabaseTables, WatchTableData } from "@/actions/actions";
 import { ExtendedFunctionalityModule } from "@/components/extraFunctions/ExtendedFunctionalityModule";
 import InsertDataFunction from "@/components/extraFunctions/insertData/InsertDataFunction";
 import { DeletedTablaFunction } from "@/components/extraFunctions/deletedTables/DeletedTablaFunction";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 
 export const DatabaseTablesListener = () => {
   const [tablesList, setTablesList] = useState([]);

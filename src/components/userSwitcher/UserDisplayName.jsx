@@ -1,7 +1,7 @@
 "use client";
 
-import { UserCircleIcon } from "@heroicons/react/20/solid";
 import { getCookie, hasCookie } from "cookies-next";
+import { UserCircleIcon } from "@heroicons/react/20/solid";
 
 export const UserDisplayName = () => {
   const hasUserCookie = hasCookie("userDatabase");

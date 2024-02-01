@@ -1,7 +1,7 @@
 "use client";
 
-import { CreateNewUserDatabase } from "@/actions/actions";
 import { useState } from "react";
+import { CreateNewUserDatabase } from "@/actions/actions";
 // import { toast } from "sonner";
 
 export default function AddUserDatabase() {

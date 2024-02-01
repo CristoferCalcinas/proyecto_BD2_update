@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { WatchDatabaseTables, WatchTableData } from "@/actions/actions";
 import { ExtendedFunctionalityModule } from "@/components/extraFunctions/ExtendedFunctionalityModule";
-import InsertDataFunction from "@/components/extraFunctions/insertData/InsertDataFunction";
+import { InsertDataFunction } from "@/components/extraFunctions/insertData/InsertDataFunction";
 import { DeletedTablaFunction } from "@/components/extraFunctions/deletedTables/DeletedTablaFunction";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 

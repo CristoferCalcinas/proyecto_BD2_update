@@ -7,7 +7,7 @@ import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { InspectTableColumns, ProcessDatabaseQuery } from "@/actions/actions";
 // import { toast } from "sonner";
 
-export function InsertDataFunction({ openParam, setOpenParam }) {
+export const InsertDataFunction = ({ openParam, setOpenParam }) => {
   const handleTableName = getCookie("insertDataByFunction");
   const [renderContentInput, setRenderContentInput] = useState();
   useEffect(() => {
@@ -122,4 +122,4 @@ export function InsertDataFunction({ openParam, setOpenParam }) {
       </Dialog>
     </Transition.Root>
   );
-}
+};
